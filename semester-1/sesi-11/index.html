@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Ubah Background Sesuai Warna</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="title">Pilih Warna</div>
+        <div class="box">
+            <div class="circle grey"></div>
+            <div class="circle green"></div>
+            <div class="circle pink"></div>
+            <div class="circle white"></div>
+        </div>
+        <button onclick="reloadWarnaWeb()" id="reloadWarnaWeb">RELOAD-WARNA</button>
+        <div id="dark"></div>
+    </div>
+
+    <!-- 
+    TUGAS:
+    1. BUAT TOMBOL(BUTTON) BARU YANG AKAN MERELOAD UNTUK MENGEMBALIKAN 
+    WARNA BODY KE SEMULA, YAITU WARNA PUTIH
+    INI BISA DILAKUKAN DENGAN RELOAD SERVER SEPERTI SESI SEBELUMNYA
+    2. KETIKA MENGKLIK WARNA GELAP, TITLE AKAN LEBIH GELAP, BAGAIMANA
+    CARA MEMBUAT TITLE NYA MENJADI WARNA TERANG ATAU KEBALIKANNYA
+    INI BISA DILAKUKAN DENGAN CARA SEPERTI SEMALAM, 
+    MEMAINKAN COMPONENT CSS NYA DI SCRIPT
+    -->
+
+    <script>
+        const circles = document.querySelectorAll(".circle");
+        let title = document.getElementById("title");        
+        let darkTitle = document.getElementById("dark");
+        darkTitle.style.backgroundColor = "#828282";
+
+        let darkColor = getComputedStyle(darkTitle).backgroundColor;
+        
+        circles.forEach(circle => {
+            circle.addEventListener("click", ({ target }) => {
+                const { backgroundColor } = getComputedStyle(target);
+
+                document.body.style.backgroundColor = backgroundColor;
+                title.style.color = backgroundColor === darkColor ? "#ffff" : "black";
+            })
+        });
+
+        function reloadWarnaWeb () {
+            location.reload();
+        }
+        // dark
+    </script>
+</body>
+</html>
